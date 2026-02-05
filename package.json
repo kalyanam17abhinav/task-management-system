@@ -4,7 +4,10 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "dev": "node -r dotenv/config server.js"
+    "start": "node server/server.js",
+    "dev": "node -r dotenv/config server/server.js",
+    "install-all": "npm install && cd client && npm install",
+    "build": "cd client && npm run build"
   },
   "keywords": [],
   "author": "",

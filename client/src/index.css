@@ -1,3 +1,55 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* --space-indigo: #22223bff;
+--dusty-grape: #4a4e69ff;
+--lilac-ash: #9a8c98ff;
+--almond-silk: #c9ada7ff;
+--parchment: #f2e9e4ff;*/
+
+*{
+    background-color: #f2e9e4;
+    
+}
+
+/* input::placeholder{
+    background-color: #0f4c5c11;
+    color: black;
+} */
+
+input{
+    /* margin: 0 auto;
+    color: white; */
+    border: 1px solid black;
+    height: 34px;
+}
+
+.priorityTab{
+    font-family: "Sigmar One", sans-serif;
+}
+
+button{
+    border: 1px solid #2e7d32;
+    font-family: "Sigmar One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.loginDiv, .loginForm{
+    background-color: #1E90FF;
+}
+
+.loginTitle{
+    font-family: "Rubik Iso", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.loginEmail, .loginPassword{
+    padding-left: 4px;
+    font-family: "Text Me One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}

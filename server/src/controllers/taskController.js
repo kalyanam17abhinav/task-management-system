@@ -18,15 +18,16 @@ export const createTask = asyncHandler(async(req, res) => {
     res.status(201).json({ message: "task created" });
 });
 
-export const getTasks = async(req, res) => {
+export const getTasks = asyncHandler(async(req, res) => {
     const userId = req.user.user_id;
 
     const{
-        status, priority, sortBy="created_at",order="desc",page=1,limit=10
+        status, priority, search, sortBy="created_at",order="desc",page=1,limit=10
     } = req.query;
 
     const conditions = []
     const values = [];
+    
     conditions.push("user_id = ?");
     values.push(userId);
     
@@ -40,8 +41,14 @@ export const getTasks = async(req, res) => {
         values.push(priority);
     }
 
+    if(search){
+        conditions.push("lower(title) like lower(?)");
+        values.push(`%${search}%`);
+    }
+
     const allowedSort = ["created_at", "due_date"];
     const allowedOrder = ["asc", "desc"];
+    
     const sortColumn = allowedSort.includes(sortBy) ? sortBy : "created_at";
     const sortOrder = allowedOrder.includes(order.toLowerCase())
     ? order.toUpperCase() : "DESC";
@@ -58,9 +65,9 @@ export const getTasks = async(req, res) => {
         count: tasks.length,
         tasks
     });
-};
+});
 
-export const updateTask = async (req, res) => {
+export const updateTask = asyncHandler(async (req, res) => {
     const {id} = req.params;
     const {title, description, status, priority, due_date} = req.body;
     const userId = req.user.user_id;
@@ -74,9 +81,9 @@ export const updateTask = async (req, res) => {
         return res.status(404).json({ message: "task not found or unauthorized "});
     }
     res.json({message: "task updated"});
-};
+});
 
-export const deleteTask = async(req, res) => {
+export const deleteTask = asyncHandler(async(req, res) => {
     const { id } = req.params;
     const userId = req.user.user_id;
 
@@ -89,4 +96,14 @@ export const deleteTask = async(req, res) => {
         return res.status(404).json({ message: "task not found or unauthorized" });
     }
     res.json({ message: "task deleted" });
-};
+});
+
+export const getTaskStats = asyncHandler(async (req, res) => {
+    const userId = req.user.user_id;
+    const [rows] = await db.query(
+        `select count(*) as total, sum(status='pending') as pending, sum(status='in_progress') as in_progress, sum(status='completed') as completed, sum(priority='high') as high_priority
+        from Tasks where user_id = ?`,
+        [userId]
+    );
+    res.json(rows[0]);
+});
