@@ -37,26 +37,3 @@ A full-stack task management application built with React and Node.js.
 ### Production Build
 1. Client: `npm run build`
 2. Server: Use PM2 or similar process manager
-
-## API Endpoints
-
-### Authentication
-- POST `/auth/register` - Register new user
-- POST `/auth/login` - Login user
-- GET `/auth/me` - Get current user
-
-### Tasks (requires authentication)
-- GET `/tasks` - Get tasks with filtering/pagination
-- POST `/tasks` - Create new task
-- PUT `/tasks/:id` - Update task
-- DELETE `/tasks/:id` - Delete task
-- GET `/tasks/stats` - Get task statistics
-
-## Environment Variables
-- `PORT` - Server port (default: 5000)
-- `JWT_SECRET` - JWT signing secret
-- `JWT_EXPIRES_IN` - JWT expiration time
-- `DB_HOST` - Database host
-- `DB_USER` - Database username
-- `DB_PASSWORD` - Database password
-- `DB_NAME` - Database name
