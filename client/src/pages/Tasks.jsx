@@ -84,10 +84,7 @@ export default function Tasks(){
       <div className="p-6 max-w-6xl mx-auto">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl font-bold text-gray-800">My Tasks</h1>
-          <button 
-            onClick={logout}
-            className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
-          >
+          <button onClick={logout} className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">
             Logout
           </button>
         </div>
@@ -119,19 +116,8 @@ export default function Tasks(){
 
         <form onSubmit={handleCreate} className="mb-6 space-y-4">
             <div className="flex gap-4">
-                <input 
-                    placeholder="Task title" 
-                    value={title} 
-                    onChange={(e) => setTitle(e.target.value)}
-                    className="flex-1 p-2 border rounded"
-                    required
-                />
-                <select 
-                    value={priority} 
-                    onChange={(e)=>setPriority(e.target.value)}
-                    className="priorityTab p-2 border rounded border-black bg-purple-600 text-white"
-                    required
-                >
+                <input placeholder="Task title" value={title} onChange={(e) => setTitle(e.target.value)} className="flex-1 p-2 border rounded" required/>
+                <select value={priority} onChange={(e)=>setPriority(e.target.value)} className="priorityTab p-2 border rounded border-black bg-purple-600 text-white" required>
                     <option value="" disabled>Priority</option>
                     <option value="low">Low</option>
                     <option value="medium">Medium</option>
@@ -139,41 +125,19 @@ export default function Tasks(){
                 </select>
             </div>
             <div className="flex gap-4">
-                <textarea 
-                    placeholder="Task description (optional)" 
-                    value={description} 
-                    onChange={(e) => setDescription(e.target.value)}
-                    className="flex-1 p-2 border rounded h-20 resize-none border-black"
-                    rows="3"
-                />
-                <button 
-                    type="submit"
-                    disabled={loading}
-                    className="bg-blue-500 hover:bg-blue-600 disabled:bg-gray-400 text-white px-6 py-2 rounded h-fit"
-                >
+                <textarea placeholder="Task description (optional)" value={description} onChange={(e) => setDescription(e.target.value)} className="flex-1 p-2 border rounded h-20 resize-none border-black" rows="3"/>
+                <button type="submit" disabled={loading} className="bg-blue-500 hover:bg-blue-600 disabled:bg-gray-400 text-white px-6 py-2 rounded h-fit">
                     {loading ? 'Adding...' : 'Add Task'}
                 </button>
             </div>
         </form>
 
         <form onSubmit={handleSearch} className="mb-6 flex gap-4">
-            <input 
-                placeholder="Search tasks by title..." 
-                value={search} 
-                onChange={(e) => setSearch(e.target.value)}
-                className="flex-1 p-2 border rounded"
-            />
-            <button 
-                type="submit"
-                className="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded"
-            >
+            <input placeholder="Search tasks by title..." value={search} onChange={(e) => setSearch(e.target.value)} className="flex-1 p-2 border rounded"/>
+            <button type="submit" className="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded">
                 Search
             </button>
-            <button 
-                type="button"
-                onClick={() => {setSearch(''); loadTasks();}}
-                className="bg-gray-300 hover:bg-gray-400 text-gray-700 px-4 py-2 rounded"
-            >
+            <button type="button" onClick={() => {setSearch(''); loadTasks();}} className="bg-gray-300 hover:bg-gray-400 text-gray-700 px-4 py-2 rounded">
                 Clear
             </button>
         </form>
@@ -206,17 +170,11 @@ export default function Tasks(){
                         </div>
                         <div className="flex gap-2">
                             {task.status !== "completed" && (
-                                <button 
-                                    onClick={() => markComplete(task)}
-                                    className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-sm"
-                                >
+                                <button onClick={() => markComplete(task)} className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-sm">
                                     Complete
                                 </button>
                             )}
-                            <button 
-                                onClick={() => handleDelete(task.task_id)}
-                                className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm"
-                            >
+                            <button onClick={() => handleDelete(task.task_id)} className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm">
                                 Delete
                             </button>
                         </div>
